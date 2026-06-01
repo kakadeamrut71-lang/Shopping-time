@@ -150,7 +150,7 @@ def init_products():
     try:
         conn = get_db_connection()
         count = conn.execute("SELECT COUNT(*) FROM products").fetchone()[0]
-        if count == 0:
+        if True:
             sample_products = [
                 ("Wireless Headphones", 2499.00, "High-quality bass wireless over-ear headphones.", "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"),
                 ("Smart Watch", 3999.00, "Fitness tracker with heart rate monitor and AMOLED display.", "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"),
