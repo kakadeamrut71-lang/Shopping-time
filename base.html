@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #eaeded; }
+        .navbar { background-color: #131921; padding: 10px 20px; display: flex; justify-content: space-between; align-items: center; color: white; }
+        .navbar a { color: white; text-decoration: none; margin-left: 15px; }
+        .logo { font-weight: bold; font-size: 20px; color: #febd69 !important; }
+        .container { max-width: 1200px; margin: 20px auto; padding: 0 20px; }
+        .btn { background-color: #f0c14b; border: 1px solid #a88734; border-radius: 3px; padding: 5px 10px; cursor: pointer; text-decoration: none; color: black; display: inline-block; }
+        .alert { background-color: #fff3cd; padding: 10px; margin-bottom: 15px; border-radius: 4px; border: 1px solid #ffeeba; color: #856404; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="{{ url_for('index') }}" class="logo">amazon.clone</a>
+        <div>
+            <a href="{{ url_for('index') }}">Products</a>
+            <a href="{{ url_for('view_cart') }}">Cart ({{ session.get('cart', [])|length }})</a>
+            {% if session.get('user_id') %}
+                <span>Hello, {{ session.username }}</span>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}">Sign In</a>
+            {% endif %}
+        </div>
+    </nav>
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}{% for message in messages %}<div class="alert">{{ message }}</div>{% endfor %}{% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

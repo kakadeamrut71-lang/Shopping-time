@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Featured Products</h2>
+<style>
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .card { background: white; padding: 15px; border-radius: 4px; border: 1px solid #ddd; display: flex; flex-direction: column; justify-content: space-between; }
+    .card img { max-width: 100%; height: 150px; object-fit: contain; }
+    .price { font-size: 18px; font-weight: bold; color: #B12704; margin: 10px 0; }
+</style>
+<div class="grid">
+    {% for product in products %}
+    <div class="card">
+        <div>
+            <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            <h3>{{ product.name }}</h3>
+            <p style="color: #565959; font-size: 13px;">{{ product.description }}</p>
+        </div>
+        <div>
+            <div class="price">${{ "%.2f"|format(product.price) }}</div>
+            <a href="{{ url_for('add_to_cart', product_id=product.id) }}" class="btn">Add to Cart</a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

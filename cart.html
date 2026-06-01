@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Your Shopping Cart</h2>
+{% if not products %}
+    <p>Your Cart is empty. <a href="{{ url_for('index') }}">Go back to store.</a></p>
+{% else %}
+    <style>
+        .cart-item { background: white; padding: 15px; margin-bottom: 10px; border: 1px solid #ddd; display: flex; justify-content: space-between; }
+    </style>
+    <div>
+        {% for product in products %}
+        <div class="cart-item">
+            <h4>{{ product.name }}</h4>
+            <strong style="color: #B12704;">${{ "%.2f"|format(product.price) }}</strong>
+        </div>
+        {% endfor %}
+        <div style="text-align: right; margin-top: 20px;">
+            <h3>Subtotal: <span style="color: #B12704;">${{ total }}</span></h3>
+            <button class="btn" onclick="alert('Order successfully processed!')">Proceed to Checkout</button>
+        </div>
+    </div>
+{% endif %}
+{% endblock %}

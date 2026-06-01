@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .box { background: white; border: 1px solid #ddd; width: 300px; margin: 50px auto; padding: 20px; border-radius: 4px; }
+    .input-group { margin-bottom: 15px; }
+    .input-group label { display: block; font-size: 12px; font-weight: bold; margin-bottom: 5px; }
+    .input-group input { width: 100%; padding: 5px; box-sizing: border-box; }
+    .btn-container { display: flex; gap: 10px; margin-top: 15px; }
+</style>
+<div class="box">
+    <h2>Sign In / Register</h2>
+    <form method="POST">
+        <div class="input-group">
+            <label>Username</label>
+            <input type="text" name="username" required>
+        </div>
+        <div class="input-group">
+            <label>Password</label>
+            <input type="password" name="password" required>
+        </div>
+        <div class="btn-container">
+            <button type="submit" name="action" value="login" class="btn" style="flex: 1;">Sign In</button>
+            <button type="submit" name="action" value="register" style="flex: 1; cursor: pointer;">Create Account</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
